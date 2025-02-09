@@ -1,4 +1,4 @@
-import NotFound from "@/app/not-found";
+import { notFound } from 'next/navigation';
 import PropertyEditForm from "@/components/PropertyEditForm";
 import connectDB from "@/config/database";
 import Property from "@/models/Property";
@@ -8,11 +8,10 @@ const PropertyEditPage = async ({ params }) => {
   await connectDB()
   
   const propertyDoc = await Property.findById(params.id).lean()
-  const property = convertToSerializableObject(propertyDoc)
 
-  if (!property) {
-    <NotFound />
-  }
+  if (!propertyDoc) notFound()
+
+  const property = convertToSerializableObject(propertyDoc)
 
   return (
     <section className="bg-blue-50">

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import NotFound from '@/app/not-found';
+import { notFound } from 'next/navigation';
 import connectDB from '@/config/database';
 import Property from '@/models/Property';
 import PropertyHeadImage from '@/components/PropertyHeaderImage';
@@ -18,7 +18,7 @@ const PropertyPage = async ({ params }) => {
     console.log(error)
   }
 
-  if (!property) return <NotFound />
+  if (!property) return notFound()
   
   return <>
     <PropertyHeadImage imageUrl={ property.images[0] } />
