@@ -19,9 +19,6 @@ const MainLayout = ({ children }) => {
 		<AuthProvider>
 			<GlobalContextProvider>
 				<html>
-					<head>
-						<script src="https://unpkg.com/react-scan/dist/auto.global.js" async />
-					</head>
 					<body>
 						<Navbar>
 							<UnreadMessageCount />
