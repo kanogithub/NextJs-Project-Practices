@@ -6,8 +6,10 @@ import { getSessionUser } from "@/utils/getSessionUser"
 async function getUnreadMessageCount() {
   await connectDB()
   
-  const { userId } = await getSessionUser()
+  const session = await getSessionUser()
+  if (session === null) return { count: 0 }
 
+  const { userId } = session
   const count = await Message.countDocuments({
     recipient: userId,
     read: false
